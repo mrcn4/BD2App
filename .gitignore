@@ -4,9 +4,6 @@
 *.jar
 *.war
 *.ear
-BD2Application/.classpath
-BD2Application/.project
-BD2Application/.settings
-BD2Application/bin
 .metadata
+BD2Application/.classpath
 BD2Application/.classpath
