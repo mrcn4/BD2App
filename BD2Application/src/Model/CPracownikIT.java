@@ -9,42 +9,47 @@ public class CPracownikIT {
 	String Nazwisko;
 	Date ZatrudnionyOd;
 	int Doswiadczenie;
-	ArrayList<Boolean> Umiejetnosci;
+	ArrayList<Integer> Umiejetnosci;
 	
-	public int getID() {
+	public int dajID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void ustawID(int iD) {
 		ID = iD;
 	}
-	public String getImie() {
+	public String dajImie() {
 		return Imie;
 	}
-	public void setImie(String imie) {
+	public void ustawImie(String imie) {
 		Imie = imie;
 	}
-	public String getNazwisko() {
+	public String dajNazwisko() {
 		return Nazwisko;
 	}
-	public void setNazwisko(String nazwisko) {
+	public void ustawNazwisko(String nazwisko) {
 		Nazwisko = nazwisko;
 	}
-	public Date getZatrudnionyOd() {
+	public Date dajZatrudnionyOd() {
 		return ZatrudnionyOd;
 	}
-	public void setZatrudnionyOd(Date zatrudnionyOd) {
+	public void ustawZatrudnionyOd(Date zatrudnionyOd) {
 		ZatrudnionyOd = zatrudnionyOd;
 	}
-	public int getDoswiadczenie() {
+	public int dajDoswiadczenie() {
 		return Doswiadczenie;
 	}
-	public void setDoswiadczenie(int doswiadczenie) {
+	public void ustawDoswiadczenie(int doswiadczenie) {
 		Doswiadczenie = doswiadczenie;
 	}
-	public ArrayList<Boolean> getUmiejetnosci() {
+	public ArrayList<Integer> dajUmiejetnosci() {
 		return Umiejetnosci;
 	}
-	public void setUmiejetnosci(ArrayList<Boolean> umiejetnosci) {
+	public void ustawUmiejetnosci(ArrayList<Integer> umiejetnosci) {
 		Umiejetnosci = umiejetnosci;
+	}
+	public void dodajUmiejetnosc(int id)
+	{
+		if(Umiejetnosci == null) Umiejetnosci = new ArrayList<Integer>();
+		Umiejetnosci.add(id);
 	}
 }
