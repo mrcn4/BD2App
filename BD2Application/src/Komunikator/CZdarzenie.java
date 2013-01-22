@@ -18,5 +18,4 @@ public class CZdarzenie {
 		this.parametry = parametry;
 	}
 	
-	
 }

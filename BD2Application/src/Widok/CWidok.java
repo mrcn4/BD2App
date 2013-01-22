@@ -34,7 +34,7 @@ public class CWidok extends Observable implements IWidok, ActionListener {
     private JFrame frame;
     CSzablonWidoku biezacyWidok;
     private final static int WINDOW_WIDTH = 800;
-    private final static int WINDOW_HEIGHT = 600;
+    private final static int WINDOW_HEIGHT = 400;
     
 	@Override
 	public void dodajObserwatoraMenu(Observer NewObserver) {
@@ -61,6 +61,7 @@ public class CWidok extends Observable implements IWidok, ActionListener {
 				System.out.println("not implemented");
 				System.exit(-1);
 		}
+		biezacyWidok.deleteObservers();
 		biezacyWidok.addObserver(ObserwatorModulu);
 		biezacyWidok.ustawArgumenty(Argumenty);
 		

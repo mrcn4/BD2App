@@ -46,7 +46,6 @@ public class CKontrolerKontrolerow implements Observer{
 		System.out.println("catched menu action in kontrolerKontrolerów");
 		if (arg instanceof CZdarzenie) {
 			CZdarzenie zdarzenie = (CZdarzenie) arg;
-			System.out.println(zdarzenie.dajTyp());
 			switch(zdarzenie.dajTyp())
 			{
 			case DODAJ_PRACOWNIKA_MENU:

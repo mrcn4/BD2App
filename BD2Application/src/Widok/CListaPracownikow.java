@@ -17,7 +17,7 @@ public class CListaPracownikow extends CSzablonWidoku {
 	@Override
 	JComponent dajKomponent() {
 		// TODO Auto-generated method stub
-		JLabel label = new JLabel("Lista pracownikooow");
+		JLabel label = new JLabel("Lista pracownikoow");
 		return label;
 	}
 

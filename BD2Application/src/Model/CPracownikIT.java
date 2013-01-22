@@ -1,50 +1,76 @@
 package Model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class CPracownikIT {
-	int ID;
+	Integer ID;
 	String Imie;
 	String Nazwisko;
 	Date ZatrudnionyOd;
-	int Doswiadczenie;
-	ArrayList<Boolean> Umiejetnosci;
+	Integer Doswiadczenie;
+	ArrayList<Integer> Umiejetnosci;
 	
-	public int getID() {
+	public CPracownikIT() {
+		Umiejetnosci = new ArrayList<Integer>();
+	}
+	public Integer dajID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void ustawID(Integer iD) {
 		ID = iD;
 	}
-	public String getImie() {
+	public String dajImie() {
 		return Imie;
 	}
-	public void setImie(String imie) {
+	public void ustawImie(String imie) {
 		Imie = imie;
 	}
-	public String getNazwisko() {
+	public String dajNazwisko() {
 		return Nazwisko;
 	}
-	public void setNazwisko(String nazwisko) {
+	public void ustawNazwisko(String nazwisko) {
 		Nazwisko = nazwisko;
 	}
-	public Date getZatrudnionyOd() {
+	public Date dajZatrudnionyOd() {
 		return ZatrudnionyOd;
 	}
-	public void setZatrudnionyOd(Date zatrudnionyOd) {
+	public void ustawZatrudnionyOd(Date zatrudnionyOd) {
 		ZatrudnionyOd = zatrudnionyOd;
 	}
-	public int getDoswiadczenie() {
+	public Integer dajDoswiadczenie() {
 		return Doswiadczenie;
 	}
-	public void setDoswiadczenie(int doswiadczenie) {
+	public void ustawDoswiadczenie(Integer doswiadczenie) {
 		Doswiadczenie = doswiadczenie;
 	}
-	public ArrayList<Boolean> getUmiejetnosci() {
+	public ArrayList<Integer> dajUmiejetnosci() {
 		return Umiejetnosci;
 	}
-	public void setUmiejetnosci(ArrayList<Boolean> umiejetnosci) {
+	public void ustawUmiejetnosci(ArrayList<Integer> umiejetnosci) {
 		Umiejetnosci = umiejetnosci;
+	}
+	public void dodajUmiejetnosc(Integer id)
+	{
+		if(Umiejetnosci == null) Umiejetnosci = new ArrayList<Integer>();
+		Umiejetnosci.add(id);
+	}
+	
+	@Override
+	public String toString() {
+		String toStringString = Imie + " " + Nazwisko + "; zatrudniony od: " + ZatrudnionyOd;
+		toStringString+= "posiada doświadczenie: " + Doswiadczenie;
+		toStringString+= "; posiada umiejetnosci: ";
+		for (Integer value : Umiejetnosci) {
+			toStringString += value + "\n";
+		}
+		return toStringString;
 	}
 }

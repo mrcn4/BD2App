@@ -1,6 +1,15 @@
 package Model;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+
+public class CDAO implements IModel {
+
+	@Override
+	public ArrayList<CPracownikIT> dajPracownikowIT() {
+		// TODO Auto-generated method stub
+		return null;
+=======
 import java.sql.*;
 public class CDAO implements IModel{
 
@@ -49,6 +58,7 @@ public class CDAO implements IModel{
 			e.printStackTrace();
 			return null;
 		}
+>>>>>>> origin/master
 	}
 
 	@Override
@@ -65,6 +75,10 @@ public class CDAO implements IModel{
 
 	@Override
 	public Boolean dodajPracownika(CPracownikIT PracownikDoDodania) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		return null;
+=======
 
 		String url = "INSERT INTO PRACOWNIK VALUES(PRACOWNIK_AUTOINCREMENT.nextval,?,?,?,?)";
 		try {
@@ -72,7 +86,7 @@ public class CDAO implements IModel{
 			PreparedStatement ps = conn.prepareStatement(url);
 			ps.setString(1, PracownikDoDodania.dajImie());
 			ps.setString(2, PracownikDoDodania.dajNazwisko());
-			ps.setDate(3, (Date) PracownikDoDodania.dajZatrudnionyOd());
+			ps.setDate(3, PracownikDoDodania.dajZatrudnionyOd());
 			ps.setInt(4, PracownikDoDodania.dajDoswiadczenie());
 			
 		} catch (SQLException e) {
@@ -107,6 +121,7 @@ public class CDAO implements IModel{
 			e.printStackTrace();
 		}
 		conn = null;
+>>>>>>> origin/master
 	}
 
 }
