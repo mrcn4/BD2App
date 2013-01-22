@@ -10,7 +10,14 @@ public class CPracownikIT {
 	Date ZatrudnionyOd;
 	int Doswiadczenie;
 	ArrayList<Integer> Umiejetnosci;
-	
+	public CPracownikIT(){}
+	public CPracownikIT(String imie,String nazwisko,Date zatrudnionyod,int doswiadczenie)
+	{
+		Imie = imie;
+		Nazwisko = nazwisko;
+		ZatrudnionyOd = zatrudnionyod;
+		Doswiadczenie = doswiadczenie;
+	}
 	public int dajID() {
 		return ID;
 	}

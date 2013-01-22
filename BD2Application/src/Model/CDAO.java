@@ -1,7 +1,11 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.awt.Window.Type;
 import java.sql.*;
+
+import oracle.jdbc.internal.OracleTypes;
 public class CDAO implements IModel{
 
 	private Connection conn = null;
@@ -66,17 +70,50 @@ public class CDAO implements IModel{
 	@Override
 	public Boolean dodajPracownika(CPracownikIT PracownikDoDodania) {
 
-		String url = "INSERT INTO PRACOWNIK VALUES(PRACOWNIK_AUTOINCREMENT.nextval,?,?,?,?)";
+		//String url2 = "INSERT INTO PRACOWNIKIT VALUES(PRACOWNIK_AUTOINCREMENT.nextval,?,?,?,?)";
+		//String url3 = "call TESTP('test123')";
+		String test1 ="{? = call DODAJPRACOWNIKA(?,?,?,?)}";
+		String url2  = "INSERT INTO PRACOWNIKIT_UMIEJETNOSCI VALUES(?,?);";
 		try {
+
+			conn.setAutoCommit(false);
+			CallableStatement proc = conn.prepareCall(test1);
 			
-			PreparedStatement ps = conn.prepareStatement(url);
-			ps.setString(1, PracownikDoDodania.dajImie());
-			ps.setString(2, PracownikDoDodania.dajNazwisko());
-			ps.setDate(3, PracownikDoDodania.dajZatrudnionyOd());
-			ps.setInt(4, PracownikDoDodania.dajDoswiadczenie());
+			proc.setString(2, PracownikDoDodania.dajImie());
+			proc.setString(3, PracownikDoDodania.dajNazwisko());
+			proc.setDate(4, PracownikDoDodania.dajZatrudnionyOd());
+			proc.setInt(5, PracownikDoDodania.dajDoswiadczenie());
+			proc.registerOutParameter(1, OracleTypes.INTEGER);; //what a fucking trick
+			
+			proc.execute();
+			int id = proc.getInt(1);
+			proc.close();
+			
+			ArrayList<Integer> umiejetnosci =  PracownikDoDodania.dajUmiejetnosci();
+			try
+			{
+			Iterator<Integer> i = umiejetnosci.iterator();
+			while(i.hasNext())
+			{
+				int id_uslugi = i.next();
+				PreparedStatement ps =conn.prepareStatement(url2);
+				ps.setInt(1, id);
+				ps.setInt(2, id_uslugi);
+				ps.executeUpdate();
+			}
+			}catch(NullPointerException e){}
+			conn.commit();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println(e.getMessage());
+			
 			e.printStackTrace();
 		}
 		return false;

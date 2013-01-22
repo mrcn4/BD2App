@@ -17,6 +17,7 @@ public class MainClass {
 		e.printStackTrace();
 	}
 	model.dajPracownikowIT();
+	model.dodajPracownika(new CPracownikIT("kazik","krosman",new Date(123454),30) );
 	System.out.println("Application End");
   }
 }
