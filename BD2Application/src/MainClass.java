@@ -1,24 +1,11 @@
 import java.sql.*;
 
-/*
- * prepared statement
- * transactions
- */
-
-/*
- * postaci równoważne
- * join natural.. albo where
- */
-
-
-
 public class MainClass {
 
         public static void selectPlayers(Connection conn, String name) throws
 SQLException {
                 PreparedStatement randomSelect = null;
             String randomSelectString = "select name_,surname,pref_foot,wage from players where name_ LIKE ? AND surname LIKE ?";
-            // nie mozna parametryzowac nazw tabel! bezpieczniejsze.
             randomSelect = conn.prepareStatement(randomSelectString);
             randomSelect.setString(1, name);
             randomSelect.setString(2, "Z%");
@@ -32,7 +19,6 @@ SQLException {
                 System.out.print (rset.getString(3)+ "\t");
                 System.out.println (rset.getString(4));
             }
-
         }
 
         public static void updatePlayersWages(Connection conn){
@@ -157,10 +143,10 @@ SQLException {
   public static void main(String[] args)
       throws ClassNotFoundException, SQLException
   {
-	  System.out.println("Application Start");
-    	String url =
-    	"jdbc:oracle:thin:kkrosman/kkrosman@ikar.elka.pw.edu.pl:1521/elka.elka.pw.edu.pl";
-    	    Connection conn = DriverManager.getConnection(url,"kkrosman","kkrosman");
+	System.out.println("Application Start");
+	String url =
+			"jdbc:oracle:thin:kkrosman/kkrosman@ikar.elka.pw.edu.pl:1521/elka.elka.pw.edu.pl";
+	Connection conn = DriverManager.getConnection(url,"kkrosman","kkrosman");
     conn.setAutoCommit(false);
     System.out.println("Połączenie poprawne? " + conn.isValid(50));
     /*
