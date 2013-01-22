@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.ArrayList;
+
 import Model.*;
 public class MainClass {
 
@@ -17,7 +19,13 @@ public class MainClass {
 		e.printStackTrace();
 	}
 	model.dajPracownikowIT();
-	model.dodajPracownika(new CPracownikIT("kazik","krosman",new Date(123454),30) );
+	CPracownikIT tmpp =new CPracownikIT("kazik","krosman",new Date(123454),30) ;
+	ArrayList<Integer> tmp = new ArrayList<Integer>();
+	tmp.add(2);
+	tmp.add(5);
+	tmpp.ustawUmiejetnosci(tmp);
+	model.dodajPracownika(tmpp);
+	
 	System.out.println("Application End");
   }
 }
