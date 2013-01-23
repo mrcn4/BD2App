@@ -21,6 +21,7 @@ public class CPracownikIT {
 		Nazwisko = nazwisko;
 		ZatrudnionyOd = zatrudnionyod;
 		Doswiadczenie = doswiadczenie;
+		Umiejetnosci = new ArrayList<Integer>();
 	}
 	
 	public Integer dajID() {

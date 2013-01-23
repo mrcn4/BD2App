@@ -57,13 +57,90 @@ public class CDAO implements IModel{
 	@Override
 	public Boolean modyfikujPracownikaIT(CPracownikIT PracownikDoModyfikacji) {
 		// TODO Auto-generated method stub
-		return null;
+		String url1  = "DELETE FROM PRACOWNIKIT_UMIEJETNOSCI WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
+		String url2  = "UPDATE PRACOWNIK SET IMIE = ?,NAZWISKO =?, ZATRUDNIONY_OD=?,DOSWIADCZENIE=? WHERE ID = ?";
+		String url3  = "INSERT INTO PRACOWNIKIT_UMIEJETNOSCI VALUES(?,?)";
+		try {
+
+			conn.setAutoCommit(false);
+			PreparedStatement proc = conn.prepareStatement(url2);
+
+			proc.setString(1, PracownikDoModyfikacji.dajImie());
+			proc.setString(2, PracownikDoModyfikacji.dajNazwisko());
+			proc.setDate(3, PracownikDoModyfikacji.dajZatrudnionyOd());
+			proc.setInt(4, PracownikDoModyfikacji.dajDoswiadczenie());
+			proc.setInt(5, PracownikDoModyfikacji.dajID());
+			proc.executeUpdate();
+			proc.close();
+			
+			proc = conn.prepareStatement(url1);
+			proc.setInt(1, PracownikDoModyfikacji.dajID());
+			proc.executeUpdate();
+			proc.close();
+			
+			ArrayList<Integer> umiejetnosci =  PracownikDoModyfikacji.dajUmiejetnosci();
+			try
+			{
+			Iterator<Integer> i = umiejetnosci.iterator();
+			while(i.hasNext())
+			{
+				int id_uslugi = i.next();
+				PreparedStatement ps =conn.prepareStatement(url3);
+				ps.setInt(1, PracownikDoModyfikacji.dajID());
+				ps.setInt(2, id_uslugi);
+				ps.executeUpdate();
+			}
+			}catch(NullPointerException e){}
+			conn.commit();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println(e.getMessage());
+			
+			e.printStackTrace();
+			return false;
+		}
+		return true;		
+		
 	}
 
 	@Override
 	public Boolean usunPracownika(CPracownikIT PracownikDoUsuniecia) {
-		// TODO Auto-generated method stub
-		return null;
+		String url1  = "DELETE FROM PRACOWNIKIT_UMIEJETNOSCI WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
+		String url2  = "DELETE FROM PRACOWNIKIT WHERE PRACOWNIK_ID = ?";
+		String url3  = "DELETE FROM PRACOWNIK WHERE ID = ?";
+		
+		PreparedStatement proc;
+		try {
+			conn.setAutoCommit(false);
+			proc = conn.prepareStatement(url1);
+			proc.setInt(1, PracownikDoUsuniecia.dajID());
+			proc.executeUpdate();
+			proc.close();
+			
+			proc = conn.prepareStatement(url2);
+			proc.setInt(1, PracownikDoUsuniecia.dajID());
+			proc.executeUpdate();
+			proc.close();
+			
+			proc = conn.prepareStatement(url3);
+			proc.setInt(1, PracownikDoUsuniecia.dajID());
+			proc.executeUpdate();
+			proc.close();
+			
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
 
 	@Override
@@ -89,7 +166,7 @@ public class CDAO implements IModel{
 			proc.close();
 			
 			ArrayList<Integer> umiejetnosci =  PracownikDoDodania.dajUmiejetnosci();
-			try
+			//try
 			{
 			Iterator<Integer> i = umiejetnosci.iterator();
 			while(i.hasNext())
@@ -100,7 +177,8 @@ public class CDAO implements IModel{
 				ps.setInt(2, id_uslugi);
 				ps.executeUpdate();
 			}
-			}catch(NullPointerException e){}
+			}
+			//catch(NullPointerException e){}
 			conn.commit();
 			
 		} catch (SQLException e) {
@@ -114,8 +192,9 @@ public class CDAO implements IModel{
 			System.out.println(e.getMessage());
 			
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
