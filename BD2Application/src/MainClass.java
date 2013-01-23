@@ -25,15 +25,15 @@ public class MainClass {
 	tmp.add(2);
 	tmp.add(5);
 	tmpp.ustawUmiejetnosci(tmp);
-	model.dodajPracownika(tmpp);
+//	model.dodajPracownika(tmpp);
 	
 	
 	tmpp =new CPracownikIT("bialy","nygas",new Date(123454),30) ;
 	tmpp.ustawID(50);
 	
-	model.modyfikujPracownikaIT(tmpp);
+//	model.modyfikujPracownikaIT(tmpp);
 	
-	model.usunPracownika(tmpp);
+//	model.usunPracownika(tmpp);
 	System.out.println("Application End");
   }
 }

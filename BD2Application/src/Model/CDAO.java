@@ -13,12 +13,13 @@ public class CDAO implements IModel{
 	public ArrayList<CPracownikIT> dajPracownikowIT() {
 		
 		String selectQuery = 
-				"SELECT PRACOWNIK.ID as id,PRACOWNIK.IMIE as imie,PRACOWNIK.NAZWISKO as nazwisko," +
-				"PRACOWNIK.ZATRUDNIONY_OD as zatr, PRACOWNIK.DOSWIADCZENIE as doswiadczenie," +
-				"PRACOWNIKIT_UMIEJETNOSCI.USLUGA_ID as usluga_id "+
-				"FROM PRACOWNIK, PRACOWNIKIT, PRACOWNIKIT_UMIEJEtNOSCI "+
-				"WHERE PRACOWNIK.ID=PRACOWNIKIT.PRACOWNIK_ID AND PRACOWNIKIT.PRACOWNIK_ID=PRACOWNIKIT_UMIEJETNOSCI.PRACOWNIKIT_PRACOWNIK_ID " +
-				"ORDER BY PRACOWNIK.ID ASC, PRACOWNIKIT_UMIEJETNOSCI.USLUGA_ID ASC";
+				"SELECT PRACOWNIK.ID as id,PRACOWNIK.IMIE as imie,PRACOWNIK.NAZWISKO as nazwisko, "+
+				"PRACOWNIK.ZATRUDNIONY_OD as zatr, PRACOWNIK.DOSWIADCZENIE as doswiadczenie, "+
+				"PRACOWNIKIT_UMIEJETNOSCI.USLUGA_ID as usluga_id "+ 
+				"FROM PRACOWNIK, PRACOWNIKIT "+
+         "LEFT JOIN PRACOWNIKIT_UMIEJETNOSCI ON PRACOWNIKIT.PRACOWNIK_ID=PRACOWNIKIT_UMIEJETNOSCI.PRACOWNIKIT_PRACOWNIK_ID "+ 
+				"WHERE PRACOWNIK.ID=PRACOWNIKIT.PRACOWNIK_ID "+
+				"ORDER BY PRACOWNIK.ID ASC, PRACOWNIKIT_UMIEJETNOSCI.USLUGA_ID ASC "; 
 		ResultSet rs = null;
 		try {
 			conn.setAutoCommit(true);
@@ -35,7 +36,9 @@ public class CDAO implements IModel{
 				if(currId != lastId)
 				{
 					if(tmpPracownik!=null)
+					{
 						pracLista.add(tmpPracownik);
+					}
 					tmpPracownik  = new CPracownikIT();
 					lastId =currId;
 				}
@@ -44,13 +47,13 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawNazwisko(rs.getString("nazwisko"));
 				tmpPracownik.ustawZatrudnionyOd(rs.getDate("zatr"));
 				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
-				tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
+				if(!rs.wasNull())
+					tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
 			}
 			if(tmpPracownik != null)
 			{
 				pracLista.add(tmpPracownik);
 			}
-			
 			
 			return pracLista;
 		} catch (SQLException e) {
