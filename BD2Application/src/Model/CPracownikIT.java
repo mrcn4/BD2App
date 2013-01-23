@@ -1,14 +1,7 @@
 package Model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class CPracownikIT {
 	Integer ID;
@@ -21,6 +14,15 @@ public class CPracownikIT {
 	public CPracownikIT() {
 		Umiejetnosci = new ArrayList<Integer>();
 	}
+	
+	public CPracownikIT(String imie,String nazwisko,Date zatrudnionyod,int doswiadczenie)
+	{
+		Imie = imie;
+		Nazwisko = nazwisko;
+		ZatrudnionyOd = zatrudnionyod;
+		Doswiadczenie = doswiadczenie;
+	}
+	
 	public Integer dajID() {
 		return ID;
 	}

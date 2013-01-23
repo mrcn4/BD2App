@@ -95,7 +95,7 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
         doswiadczeniePole.setColumns(30);
         if(pracownik.dajDoswiadczenie() != null)
         {
-        	nazwiskoPole.setText(pracownik.dajDoswiadczenie().toString());
+        	doswiadczeniePole.setText(pracownik.dajDoswiadczenie().toString());
         }
         fields[fieldNum++] = doswiadczeniePole;
         
@@ -172,8 +172,8 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
 				MessageBoxHelper.infoBox("Datę wpisz w formacie yyyy-MM-dd", "Edycja danych pracownika");
 				return;
 			}
-			pracownik.ustawZatrudnionyOd(zatrudnionyOd);
-			
+			java.sql.Date zatrudnionyOdStycznia = new Date(zatrudnionyOd.getTime());
+			pracownik.ustawZatrudnionyOd(zatrudnionyOdStycznia);
 			
 			Integer doswiadczenie;
 			try

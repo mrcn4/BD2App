@@ -29,6 +29,9 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 		
 		//utworz nowego pracownika
 		CPracownikIT pracownikIT = new CPracownikIT();
+		pracownikIT.ustawImie("Mariusz");
+		pracownikIT.ustawNazwisko("Korcz");
+		pracownikIT.ustawDoswiadczenie(1);
 		listaArgumentow.add(pracownikIT);
 		
 		//wez liste umiejetnosci
@@ -51,8 +54,8 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 			{
 				case ZAKONCZONO_EDYCJE_PRACOWNIKA:
 					CPracownikIT pracownikDoDodania = (CPracownikIT) zdarzenie.dajParametry().get(0);
-					//TODO: model.dodajPracownika(pracownikDoDodania);
 					System.out.println("pracownikDoDodania: " + pracownikDoDodania);
+					model.dodajPracownika(pracownikDoDodania);
 					break;
 				default:
 					System.out.println("Niepoprawne dane otrzymane od widoku: CKontrolerDodawaniaPracownikow");

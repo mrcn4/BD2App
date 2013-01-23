@@ -15,7 +15,14 @@ public class CKontrolerKontrolerow implements Observer{
 	public CKontrolerKontrolerow() {
 		widok = new CWidok();
 		model = new CDAO();
-		// TODO: do cdao
+		String url =
+				"jdbc:oracle:thin:kkrosman/kkrosman@ikar.elka.pw.edu.pl:1521/elka.elka.pw.edu.pl";
+		try {
+			model.polacz(url, "kkrosman", "kkrosman");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		final Observer thisObject = this;
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
