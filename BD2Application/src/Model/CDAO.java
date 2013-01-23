@@ -38,6 +38,7 @@ public class CDAO implements IModel{
 					if(tmpPracownik!=null)
 					{
 						pracLista.add(tmpPracownik);
+						
 					}
 					tmpPracownik  = new CPracownikIT();
 					lastId =currId;
@@ -47,13 +48,17 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawNazwisko(rs.getString("nazwisko"));
 				tmpPracownik.ustawZatrudnionyOd(rs.getDate("zatr"));
 				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
+				int x = rs.getInt("usluga_id");
 				if(!rs.wasNull())
-					tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
+				{
+					tmpPracownik.dodajUmiejetnosc(x);
+				}
 			}
 			if(tmpPracownik != null)
 			{
 				pracLista.add(tmpPracownik);
 			}
+			
 			
 			return pracLista;
 		} catch (SQLException e) {
