@@ -69,11 +69,7 @@ public class CPracownikIT {
 	@Override
 	public String toString() {
 		String toStringString = Imie + " " + Nazwisko + "; zatrudniony od: " + ZatrudnionyOd;
-		toStringString+= "posiada doświadczenie: " + Doswiadczenie;
-		toStringString+= "; posiada umiejetnosci: ";
-		for (Integer value : Umiejetnosci) {
-			toStringString += value + "\n";
-		}
+		toStringString+= "; posiada doświadczenie: " + Doswiadczenie;
 		return toStringString;
 	}
 }

@@ -50,7 +50,6 @@ public class CKontrolerKontrolerow implements Observer{
 	}
 	@Override
 	public void update(Observable obserwowany, Object arg) {		
-		System.out.println("catched menu action in kontrolerKontrolerów");
 		if (arg instanceof CZdarzenie) {
 			CZdarzenie zdarzenie = (CZdarzenie) arg;
 			switch(zdarzenie.dajTyp())
@@ -61,11 +60,9 @@ public class CKontrolerKontrolerow implements Observer{
 			case EDYTUJ_PRACOWNIKA_MENU:
 				updateHelper(ETypModulu.LISTA_PRACOWNIKOW,new CKontrolerEdycjiPracownikow(model,widok));
 				break;
-			case USUN_PRACOWNIKA_MENU:
-				updateHelper(ETypModulu.LISTA_PRACOWNIKOW,new CKontrolerEdycjiPracownikow(model,widok));
-				break;
 			default:
-				break;
+				System.err.println("Nie zaimplementowana akcja menu!");
+				System.exit(-1);
 			}
 		}
 	}

@@ -9,6 +9,7 @@ import Komunikator.ETypModulu;
 import Model.CPracownikIT;
 import Model.IModel;
 import Widok.IWidok;
+import Widok.MessageBoxHelper;
 
 public class CKontrolerEdycjiPracownikow extends CKontroler {
 	
@@ -29,14 +30,46 @@ public class CKontrolerEdycjiPracownikow extends CKontroler {
 			CZdarzenie zdarzenie = (CZdarzenie) arg;
 			switch(zdarzenie.dajTyp())
 			{
-			case WYBRANO_ID_PRACOWNIKA:
+			case WYBRANO_ID_PRACOWNIKA_EDYCJA:
 				id = (Integer)zdarzenie.dajParametry().get(0);
 				widok.wyswietlModul(ETypModulu.EDYTUJ_PRACOWNIKA_FORMULARZ, this, dajArgumenty(ETypModulu.EDYTUJ_PRACOWNIKA_FORMULARZ));
+				break;
+			case WYBRANO_ID_PRACOWNIKA_USUN:
+				id = (Integer)zdarzenie.dajParametry().get(0);
+				Iterator<CPracownikIT> iterator = pracownicy.iterator();
+				CPracownikIT next = null;
+				while(iterator.hasNext())
+				{
+					next = iterator.next();
+					if(next.dajID() == id)
+					{						
+						break;
+					}
+				}
+				if(next != null)
+				{
+					if(model.usunPracownika(next))
+					{
+						MessageBoxHelper.infoBox("Modyfikacja zakończona powodzeniem!", "Edycja pracownika");
+					}
+					else
+					{
+						MessageBoxHelper.infoBox("Modyfikacja nie powiodła się!", "Edycja pracownika");
+					}
+				}
+				widok.wyswietlModul(ETypModulu.LISTA_PRACOWNIKOW, this, dajArgumenty(ETypModulu.LISTA_PRACOWNIKOW));
 				break;
 			case ZAKONCZONO_EDYCJE_PRACOWNIKA:
 				CPracownikIT pracownikDoDodania = (CPracownikIT) zdarzenie.dajParametry().get(0);
 				System.out.println("pracownikDoDodania: " + pracownikDoDodania);
-				model.modyfikujPracownikaIT(pracownikDoDodania);
+				if(model.modyfikujPracownikaIT(pracownikDoDodania))
+				{
+					MessageBoxHelper.infoBox("Modyfikacja zakończona powodzeniem!", "Edycja pracownika");
+				}
+				else
+				{
+					MessageBoxHelper.infoBox("Modyfikacja nie powiodła się!", "Edycja pracownika");
+				}
 				break;
 			default:
 				System.err.println("Niepoprawa akcja w CKontroler edycji");
@@ -53,7 +86,6 @@ public class CKontrolerEdycjiPracownikow extends CKontroler {
 		{
 		case LISTA_PRACOWNIKOW:
 			pracownicy = model.dajPracownikowIT();
-			System.err.println("Lista pracowników size:" + pracownicy.size());
 			parametry.add(pracownicy);
 			break;
 		case EDYTUJ_PRACOWNIKA_FORMULARZ:

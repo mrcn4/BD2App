@@ -105,7 +105,22 @@ public class CListaPracownikow extends CSzablonWidoku implements ListSelectionLi
 			{
 				CPracownikIT elementAt = (CPracownikIT)list.getModel().getElementAt(index);
 				CZdarzenie zdarzenie = new CZdarzenie();
-				zdarzenie.ustawTyp(ETypZdarzenia.WYBRANO_ID_PRACOWNIKA);
+				zdarzenie.ustawTyp(ETypZdarzenia.WYBRANO_ID_PRACOWNIKA_EDYCJA);
+				ArrayList<Object> parametry = new ArrayList<Object>();
+				parametry.add(elementAt.dajID());
+				zdarzenie.ustawParametry(parametry);
+				setChanged();
+				notifyObservers(zdarzenie);
+			}
+		}
+		else if (actionCommand == USUN_PRACOWNIKA)
+		{
+			Integer index = list.getSelectedIndex();
+			if(index != -1)
+			{
+				CPracownikIT elementAt = (CPracownikIT)list.getModel().getElementAt(index);
+				CZdarzenie zdarzenie = new CZdarzenie();
+				zdarzenie.ustawTyp(ETypZdarzenia.WYBRANO_ID_PRACOWNIKA_USUN);
 				ArrayList<Object> parametry = new ArrayList<Object>();
 				parametry.add(elementAt.dajID());
 				zdarzenie.ustawParametry(parametry);
