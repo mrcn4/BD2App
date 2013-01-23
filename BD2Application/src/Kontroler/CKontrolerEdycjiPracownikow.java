@@ -36,7 +36,7 @@ public class CKontrolerEdycjiPracownikow extends CKontroler {
 			case ZAKONCZONO_EDYCJE_PRACOWNIKA:
 				CPracownikIT pracownikDoDodania = (CPracownikIT) zdarzenie.dajParametry().get(0);
 				System.out.println("pracownikDoDodania: " + pracownikDoDodania);
-				model.dodajPracownika(pracownikDoDodania);
+				model.modyfikujPracownikaIT(pracownikDoDodania);
 				break;
 			default:
 				System.err.println("Niepoprawa akcja w CKontroler edycji");

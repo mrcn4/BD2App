@@ -113,6 +113,7 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
                                         GAP, GAP, //init x,y
                                         GAP, GAP/2);//xpad, ypad
 
+        ArrayList<Integer> umiejetnosciPracownika = pracownik.dajUmiejetnosci();
         //umiejetnosci
         JPanel umiejetnosciPanel = new JPanel();
         umiejetnosciPanel.setLayout(new BoxLayout(umiejetnosciPanel, BoxLayout.Y_AXIS));
@@ -124,6 +125,7 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
             insidePane.setLayout(new BoxLayout(insidePane, BoxLayout.X_AXIS));
             JCheckBox checkBox = new JCheckBox();
             checkBox.setName(pairs.getKey().toString());
+            checkBox.setSelected(umiejetnosciPracownika.contains(pairs.getKey()));
             checkBox.addItemListener(this);
             insidePane.add(checkBox);
             insidePane.add(new JLabel((String)pairs.getValue()));

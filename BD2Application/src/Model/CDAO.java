@@ -46,7 +46,6 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
 				tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
 				
-				
 			}
 			return pracLista;
 		} catch (SQLException e) {

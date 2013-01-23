@@ -62,7 +62,7 @@ public class CKontrolerKontrolerow implements Observer{
 				updateHelper(ETypModulu.LISTA_PRACOWNIKOW,new CKontrolerEdycjiPracownikow(model,widok));
 				break;
 			case USUN_PRACOWNIKA_MENU:
-				updateHelper(ETypModulu.LISTA_PRACOWNIKOW,new CKontrolerUsuwaniaPracownikow(model,widok));
+				updateHelper(ETypModulu.LISTA_PRACOWNIKOW,new CKontrolerEdycjiPracownikow(model,widok));
 				break;
 			default:
 				break;
