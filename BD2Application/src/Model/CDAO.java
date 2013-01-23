@@ -45,9 +45,13 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawZatrudnionyOd(rs.getDate("zatr"));
 				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
 				tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
-				
-				
 			}
+			if(tmpPracownik != null)
+			{
+				pracLista.add(tmpPracownik);
+			}
+			
+			
 			return pracLista;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
