@@ -43,6 +43,7 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawImie(rs.getString("imie"));
 				tmpPracownik.ustawNazwisko(rs.getString("nazwisko"));
 				tmpPracownik.ustawZatrudnionyOd(rs.getDate("zatr"));
+				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
 				tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
 				
 				
