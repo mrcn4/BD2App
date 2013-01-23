@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.sql.*;
 
@@ -36,6 +37,7 @@ public class CDAO implements IModel{
 					if(tmpPracownik!=null)
 						pracLista.add(tmpPracownik);
 					tmpPracownik  = new CPracownikIT();
+					lastId =currId;
 				}
 				tmpPracownik.ustawID(rs.getInt("id"));
 				tmpPracownik.ustawImie(rs.getString("imie"));
@@ -221,6 +223,25 @@ public class CDAO implements IModel{
 			e.printStackTrace();
 		}
 		conn = null;
+	}
+
+	@Override
+	public HashMap<Integer, String> dajUslugi() {
+		HashMap<Integer, String> hm = new HashMap<Integer, String>();
+		String url = "SELECT ID as id, USLUGA as usluga FROM USLUGA";
+		try {
+			PreparedStatement ps = conn.prepareStatement(url);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				hm.put(rs.getInt("id"), rs.getString("usluga"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hm;
 	}
 
 }

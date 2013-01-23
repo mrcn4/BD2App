@@ -18,6 +18,7 @@ public class MainClass {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	model.dajUslugi();
 	model.dajPracownikowIT();
 	CPracownikIT tmpp =new CPracownikIT("kazik","krosman",new Date(123454),30) ;
 	ArrayList<Integer> tmp = new ArrayList<Integer>();

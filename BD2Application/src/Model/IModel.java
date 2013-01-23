@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * Model interface
  */
@@ -11,5 +12,6 @@ public interface IModel {
 	Boolean modyfikujPracownikaIT(CPracownikIT PracownikDoModyfikacji);
 	Boolean usunPracownika(CPracownikIT PracownikDoUsuniecia);
 	Boolean dodajPracownika(CPracownikIT PracownikDoDodania);
+	HashMap<Integer, String> dajUslugi();
 }
 	
