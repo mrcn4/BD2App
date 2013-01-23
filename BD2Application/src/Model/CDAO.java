@@ -37,9 +37,6 @@ public class CDAO implements IModel{
 				{
 					if(tmpPracownik!=null)
 					{
-
-						System.out.println(tmpPracownik.dajImie()+tmpPracownik.dajNazwisko());
-					//	System.out.println(tmpPracownik.dajImie()+tmpPracownik.dajNazwisko());
 						pracLista.add(tmpPracownik);
 					}
 					tmpPracownik  = new CPracownikIT();
@@ -50,15 +47,13 @@ public class CDAO implements IModel{
 				tmpPracownik.ustawNazwisko(rs.getString("nazwisko"));
 				tmpPracownik.ustawZatrudnionyOd(rs.getDate("zatr"));
 				tmpPracownik.ustawDoswiadczenie(rs.getInt("doswiadczenie"));
-				tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
+				if(!rs.wasNull())
+					tmpPracownik.dodajUmiejetnosc(rs.getInt("usluga_id"));
 			}
 			if(tmpPracownik != null)
 			{
 				pracLista.add(tmpPracownik);
-				System.out.println("test123");
-				System.out.println(tmpPracownik.dajImie()+tmpPracownik.dajNazwisko());
 			}
-			System.out.println(pracLista.size()); 
 			
 			return pracLista;
 		} catch (SQLException e) {
