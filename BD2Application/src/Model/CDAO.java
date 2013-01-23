@@ -36,6 +36,7 @@ public class CDAO implements IModel{
 					if(tmpPracownik!=null)
 						pracLista.add(tmpPracownik);
 					tmpPracownik  = new CPracownikIT();
+					lastId =currId;
 				}
 				tmpPracownik.ustawID(rs.getInt("id"));
 				tmpPracownik.ustawImie(rs.getString("imie"));
