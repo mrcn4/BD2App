@@ -26,6 +26,13 @@ public class MainClass {
 	tmpp.ustawUmiejetnosci(tmp);
 	model.dodajPracownika(tmpp);
 	
+	
+	tmpp =new CPracownikIT("bialy","nygas",new Date(123454),30) ;
+	tmpp.ustawID(50);
+	
+	model.modyfikujPracownikaIT(tmpp);
+	
+	model.usunPracownika(tmpp);
 	System.out.println("Application End");
   }
 }

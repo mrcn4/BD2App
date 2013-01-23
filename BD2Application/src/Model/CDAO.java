@@ -113,8 +113,8 @@ public class CDAO implements IModel{
 	@Override
 	public Boolean usunPracownika(CPracownikIT PracownikDoUsuniecia) {
 		String url1  = "DELETE FROM PRACOWNIKIT_UMIEJETNOSCI WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
-		String url2  = "DELETE FROM PRACOWNIKIT WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
-		String url3  = "DELETE FROM PRACOWNIK WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
+		String url2  = "DELETE FROM PRACOWNIKIT WHERE PRACOWNIK_ID = ?";
+		String url3  = "DELETE FROM PRACOWNIK WHERE ID = ?";
 		
 		PreparedStatement proc;
 		try {
