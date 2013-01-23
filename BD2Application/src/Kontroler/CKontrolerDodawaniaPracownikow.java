@@ -35,11 +35,7 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 		listaArgumentow.add(pracownikIT);
 		
 		//wez liste umiejetnosci
-		HashMap<Integer, String> listaUmiejetosci = new HashMap<Integer, String>();
-		listaUmiejetosci.put(0, "Kodzenie w C");
-		listaUmiejetosci.put(1, "Kodzenie w C++");
-		listaUmiejetosci.put(2, "Kodzenie w D");
-		listaUmiejetosci.put(3, "Kodzenie w D++");
+		HashMap<Integer, String> listaUmiejetosci = model.dajUslugi();
 		listaArgumentow.add(listaUmiejetosci);
 		
 		return listaArgumentow;
@@ -55,7 +51,7 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 				case ZAKONCZONO_EDYCJE_PRACOWNIKA:
 					CPracownikIT pracownikDoDodania = (CPracownikIT) zdarzenie.dajParametry().get(0);
 					System.out.println("pracownikDoDodania: " + pracownikDoDodania);
-					model.dodajPracownika(pracownikDoDodania);
+					model.modyfikujPracownikaIT(pracownikDoDodania);
 					break;
 				default:
 					System.out.println("Niepoprawne dane otrzymane od widoku: CKontrolerDodawaniaPracownikow");

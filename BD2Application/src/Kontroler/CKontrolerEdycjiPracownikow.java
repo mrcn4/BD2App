@@ -64,6 +64,7 @@ public class CKontrolerEdycjiPracownikow extends CKontroler {
 				if(next.dajID() == id)
 				{
 					parametry.add(next);
+					parametry.add(model.dajUslugi());
 					break;
 				}
 			}
