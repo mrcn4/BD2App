@@ -1,16 +1,16 @@
 package Widok;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -32,18 +32,12 @@ public class CListaPracownikow extends CSzablonWidoku implements ListSelectionLi
 	static final private String EDYTUJ_PRACOWNIKA = "edytuj";
 	static final private String USUN_PRACOWNIKA = "usun";
 
+	@SuppressWarnings("unchecked")
 	@Override
 	void ustawArgumenty(ArrayList<Object> ListaArgumentow) {
 		if((ListaArgumentow != null) && (ListaArgumentow.get(0) instanceof ArrayList<?>))
 		{
 			listaPracownikow = ((ArrayList<CPracownikIT>)ListaArgumentow.get(0));
-			System.err.println("ustawArgumenty Lista argumentów: ok");
-			Iterator<CPracownikIT> iterator = listaPracownikow.iterator();
-			while (iterator.hasNext())
-			{
-				CPracownikIT next = iterator.next();
-				System.err.println("Mam pracownika o id: " + next.dajID());
-			}
 		}
 		else
 		{
@@ -54,7 +48,7 @@ public class CListaPracownikow extends CSzablonWidoku implements ListSelectionLi
 
 	@Override
 	JComponent dajKomponent() {
-		JLabel label = new JLabel("Lista pracownikow");
+		JLabel label = new JLabel("Lista pracownikow: ");
 		
         listModel = new DefaultListModel();
 		Iterator<CPracownikIT> iterator = listaPracownikow.iterator();
@@ -82,9 +76,19 @@ public class CListaPracownikow extends CSzablonWidoku implements ListSelectionLi
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(label);
+        
+        list.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(list);
+        mainPanel.add(Box.createVerticalStrut(10));
+        
+        edytujButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(edytujButton);
+        
+        mainPanel.add(Box.createVerticalStrut(10));
+        
+        usunButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(usunButton);
         
 		return mainPanel;

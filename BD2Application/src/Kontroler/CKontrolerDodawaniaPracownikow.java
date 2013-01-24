@@ -29,9 +29,9 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 		
 		//utworz nowego pracownika
 		CPracownikIT pracownikIT = new CPracownikIT();
-		pracownikIT.ustawImie("Mariusz");
-		pracownikIT.ustawNazwisko("Korcz");
-		pracownikIT.ustawDoswiadczenie(1);
+		pracownikIT.ustawImie("");
+		pracownikIT.ustawNazwisko("");
+		pracownikIT.ustawDoswiadczenie(null);
 		listaArgumentow.add(pracownikIT);
 		
 		//wez liste umiejetnosci
@@ -54,6 +54,7 @@ public class CKontrolerDodawaniaPracownikow extends CKontroler {
 					if(model.dodajPracownika(pracownikDoDodania))
 					{
 						MessageBoxHelper.infoBox("Zapis zakończony powodzeniem!", "Dodawnie pracownika");
+						widok.wyswietlModul(ETypModulu.EDYTUJ_PRACOWNIKA_FORMULARZ, this, dajArgumenty(ETypModulu.EDYTUJ_PRACOWNIKA_FORMULARZ));
 					}
 					else
 					{

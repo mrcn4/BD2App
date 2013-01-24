@@ -1,14 +1,12 @@
 package Kontroler;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
-import Widok.CWidok;
 
 import Komunikator.CZdarzenie;
 import Komunikator.ETypModulu;
 import Model.CDAO;
+import Widok.CWidok;
 
 public class CKontrolerKontrolerow implements Observer{
 	
@@ -20,7 +18,8 @@ public class CKontrolerKontrolerow implements Observer{
 		try {
 			model.polacz(url, "kkrosman", "kkrosman");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.err.println("Połączenie z bazą nie powiodło się");
+			System.exit(-1);
 		}
 		
 		final Observer thisObject = this;
@@ -34,9 +33,8 @@ public class CKontrolerKontrolerow implements Observer{
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("main enter");
-		CKontrolerKontrolerow kk= new CKontrolerKontrolerow();
-		System.out.println("main leave");
+		System.out.println("Application start.");
+		new CKontrolerKontrolerow();
 	}
 
 	private void updateHelper(final ETypModulu typ, final CKontroler kontroler)
@@ -69,5 +67,6 @@ public class CKontrolerKontrolerow implements Observer{
 	
 	private CWidok widok;
 	private CDAO model;
+	@SuppressWarnings("unused")
 	private CKontroler biezacyKontroler;
 }

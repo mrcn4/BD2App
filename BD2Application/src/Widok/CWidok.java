@@ -1,29 +1,20 @@
 package Widok;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import Komunikator.CZdarzenie;
 import Komunikator.ETypModulu;
@@ -83,13 +74,13 @@ public class CWidok extends Observable implements IWidok, ActionListener {
 
 		//Build the first menu.
 		JMenu menu = new JMenu("Ewidencja pracowników");
-		menu.setMnemonic(KeyEvent.VK_A);
+		menu.setMnemonic(KeyEvent.VK_E);
 		menu.getAccessibleContext().setAccessibleDescription(
 		        "Ewidencja pracowników");
 
 		//build the first submenu in menu
 		JMenu submenu = new JMenu("Pracownicy IT");
-		submenu.setMnemonic(KeyEvent.VK_S);
+		submenu.setMnemonic(KeyEvent.VK_I);
 		menuItem = new JMenuItem("Dodaj pracowników");
 		menuItem.addActionListener(this);
 		menuItem.setActionCommand(DODAJ_PRACOWNIKOW);
@@ -161,13 +152,12 @@ public class CWidok extends Observable implements IWidok, ActionListener {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JLabel label = new JLabel("Sacha to ....");
+		/*JLabel label = new JLabel("");
+		String path = "/home/sven/Pictures/IBM_logo_transparent.gif";
+        BufferedImage image = ImageIO.read(new File(path));
+        ImageIcon imageIcon = new ImageIcon(url);
 		
-		JTextField textField = new JTextField();
-		textField.setColumns(30);
-
-		panel.add(label);
-		panel.add(textField);
+		panel.add(label);*/
 
 		panelY.add(Box.createVerticalGlue());
 		panelY.add(panel);
@@ -179,7 +169,6 @@ public class CWidok extends Observable implements IWidok, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        System.out.println("Komenda to:" + command);
         CZdarzenie zdarzenie = new CZdarzenie();
         if(DODAJ_PRACOWNIKOW == command)
         {

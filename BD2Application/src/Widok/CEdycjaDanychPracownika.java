@@ -13,17 +13,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -35,12 +31,12 @@ import Model.CPracownikIT;
 public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionListener, ItemListener {
 	private static final int GAP = 10;
 	private static final String ZAPISZ = "zapisz";
-	private static final String ANULUJ = "anuluj";
 	
 	JTextField imiePole, nazwiskoPole, zatrudnionyOdPole, doswiadczeniePole;
 	private CPracownikIT pracownik;
 	private HashMap<Integer, String> listaUmiejetnosci;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	void ustawArgumenty(ArrayList<Object> ListaArgumentow) {
 		Object o0 = ListaArgumentow.get(0);
@@ -55,6 +51,7 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	JComponent dajKomponent() {
 		JPanel textInputPanel = new JPanel(new SpringLayout());
@@ -120,7 +117,6 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
         Iterator it = listaUmiejetnosci.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pairs = (Map.Entry)it.next();
-            System.out.println(pairs.getKey() + " = " + pairs.getValue());
             JPanel insidePane = new JPanel();
             insidePane.setLayout(new BoxLayout(insidePane, BoxLayout.X_AXIS));
             JCheckBox checkBox = new JCheckBox();
@@ -159,7 +155,6 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
 		String actionCommand = e.getActionCommand();
 		if(ZAPISZ == actionCommand)
 		{
-			System.out.println("action perf EdycjaDanychPracownika");
 			CZdarzenie zdarzenie = new CZdarzenie();
 			zdarzenie.ustawTyp(ETypZdarzenia.ZAKONCZONO_EDYCJE_PRACOWNIKA);
 			
@@ -186,7 +181,7 @@ public class CEdycjaDanychPracownika extends CSzablonWidoku implements ActionLis
 			}
 			catch (NumberFormatException exception)
 			{
-				MessageBoxHelper.infoBox("Doświadczenie powinno być liczbą całkowitą > 0", "Edycja danych");
+				MessageBoxHelper.infoBox("Doświadczenie powinno być liczbą całkowitą >= 0", "Edycja danych");
 				return;
 			}
 			pracownik.ustawDoswiadczenie(doswiadczenie);

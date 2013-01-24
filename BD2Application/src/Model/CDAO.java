@@ -70,7 +70,6 @@ public class CDAO implements IModel{
 
 	@Override
 	public Boolean modyfikujPracownikaIT(CPracownikIT PracownikDoModyfikacji) {
-		// TODO Auto-generated method stub
 		String url1  = "DELETE FROM PRACOWNIKIT_UMIEJETNOSCI WHERE PRACOWNIKIT_PRACOWNIK_ID = ?";
 		String url2  = "UPDATE PRACOWNIK SET IMIE = ?,NAZWISKO =?, ZATRUDNIONY_OD=?,DOSWIADCZENIE=? WHERE ID = ?";
 		String url3  = "INSERT INTO PRACOWNIKIT_UMIEJETNOSCI VALUES(?,?)";
@@ -150,8 +149,7 @@ public class CDAO implements IModel{
 			
 			conn.commit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 		
 		return true;
