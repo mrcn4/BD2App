@@ -62,7 +62,6 @@ public class CDAO implements IModel{
 			
 			return pracLista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -107,11 +106,9 @@ public class CDAO implements IModel{
 			conn.commit();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			System.out.println(e.getMessage());
@@ -158,8 +155,6 @@ public class CDAO implements IModel{
 	@Override
 	public Boolean dodajPracownika(CPracownikIT PracownikDoDodania) {
 
-		//String url2 = "INSERT INTO PRACOWNIKIT VALUES(PRACOWNIK_AUTOINCREMENT.nextval,?,?,?,?)";
-		//String url3 = "call TESTP('test123')";
 		String test1 ="{? = call DODAJPRACOWNIKA(?,?,?,?)}";
 		String url2  = "INSERT INTO PRACOWNIKIT_UMIEJETNOSCI VALUES(?,?)";
 		try {
@@ -178,8 +173,6 @@ public class CDAO implements IModel{
 			proc.close();
 			
 			ArrayList<Integer> umiejetnosci =  PracownikDoDodania.dajUmiejetnosci();
-			//try
-			{
 			Iterator<Integer> i = umiejetnosci.iterator();
 			while(i.hasNext())
 			{
@@ -189,16 +182,12 @@ public class CDAO implements IModel{
 				ps.setInt(2, id_uslugi);
 				ps.executeUpdate();
 			}
-			}
-			//catch(NullPointerException e){}
 			conn.commit();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			System.out.println(e.getMessage());
@@ -217,7 +206,6 @@ public class CDAO implements IModel{
 				conn.close();
 				conn = DriverManager.getConnection(url,username,password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			conn = null;
 				throw new Exception("Cannot connect to Database"+e.getMessage());
@@ -248,7 +236,6 @@ public class CDAO implements IModel{
 				hm.put(rs.getInt("id"), rs.getString("usluga"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

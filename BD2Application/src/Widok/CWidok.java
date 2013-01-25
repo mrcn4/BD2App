@@ -25,7 +25,7 @@ public class CWidok extends Observable implements IWidok, ActionListener {
     //constants for action commands
     protected final static String DODAJ_PRACOWNIKOW = "dodaj";
     protected final static String EDYTUJ_PRACOWNIKA = "edytuj";
-    protected final static String TYTUŁ_OKNA =  "Zarządzanie projektami informatycznymi";
+    protected final static String TYTUL_OKNA =  "Zarządzanie projektami informatycznymi";
     private final static int WINDOW_WIDTH = 800;
     private final static int WINDOW_HEIGHT = 400;
     private JFrame frame;
@@ -130,7 +130,7 @@ public class CWidok extends Observable implements IWidok, ActionListener {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		
 		  //Instantiate the controlling class.
-        frame = new JFrame(TYTUŁ_OKNA);
+        frame = new JFrame(TYTUL_OKNA);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         createAndAddMenu();
